@@ -1,0 +1,402 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Enhanced sci-fi theme variables with FX levels */
+  --neon-cyan: oklch(0.8 0.3 200);
+  --neon-purple: oklch(0.7 0.3 280);
+  --neon-green: oklch(0.8 0.3 140);
+  --neon-orange: oklch(0.8 0.3 60);
+  --neon-pink: oklch(0.8 0.3 320);
+
+  /* Glass morphism variables */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg-strong: rgba(255, 255, 255, 0.1);
+  --glass-border-strong: rgba(255, 255, 255, 0.2);
+
+  /* Hologram variables */
+  --hologram-primary: rgba(0, 255, 255, 0.3);
+  --hologram-secondary: rgba(255, 0, 255, 0.2);
+  --hologram-accent: rgba(0, 255, 0, 0.1);
+
+  /* Grid and scan line variables */
+  --grid-color: rgba(0, 255, 255, 0.1);
+  --scan-line-color: rgba(0, 255, 255, 0.3);
+
+  /* FX intensity variables (controlled by theme system) */
+  --fx-intensity: 1;
+  --glow-intensity: 1;
+  --animation-speed: 1;
+
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.1 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: var(--neon-cyan);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: var(--neon-purple);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.15 0 0);
+  --ring: var(--neon-cyan);
+  --chart-1: var(--neon-cyan);
+  --chart-2: var(--neon-purple);
+  --chart-3: var(--neon-green);
+  --chart-4: var(--neon-orange);
+  --chart-5: var(--neon-pink);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--neon-cyan);
+  --sidebar-primary-foreground: oklch(0.05 0 0);
+  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.2 0 0);
+  --sidebar-ring: var(--neon-cyan);
+}
+
+/* Added FX level classes for theme system */
+.fx-subtle {
+  --fx-intensity: 0.3;
+  --glow-intensity: 0.2;
+  --animation-speed: 0.5;
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+.fx-standard {
+  --fx-intensity: 1;
+  --glow-intensity: 1;
+  --animation-speed: 1;
+}
+
+.fx-max {
+  --fx-intensity: 1.5;
+  --glow-intensity: 2;
+  --animation-speed: 1.5;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+.dark {
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.1 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: var(--neon-cyan);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: var(--neon-purple);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.15 0 0);
+  --ring: var(--neon-cyan);
+  --chart-1: var(--neon-cyan);
+  --chart-2: var(--neon-purple);
+  --chart-3: var(--neon-green);
+  --chart-4: var(--neon-orange);
+  --chart-5: var(--neon-pink);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--neon-cyan);
+  --sidebar-primary-foreground: oklch(0.05 0 0);
+  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.2 0 0);
+  --sidebar-ring: var(--neon-cyan);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Added reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Enhanced sci-fi utility classes with theme system support */
+@layer utilities {
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(calc(10px * var(--fx-intensity)));
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-effect-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(calc(15px * var(--fx-intensity)));
+    border: 1px solid var(--glass-border-strong);
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 calc(20px * var(--glow-intensity)) var(--neon-cyan);
+  }
+
+  .neon-glow-purple {
+    box-shadow: 0 0 calc(20px * var(--glow-intensity)) var(--neon-purple);
+  }
+
+  .neon-glow-green {
+    box-shadow: 0 0 calc(20px * var(--glow-intensity)) var(--neon-green);
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .grid-bg-dense {
+    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 25px 25px;
+  }
+
+  .hologram-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hologram-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--hologram-primary), transparent);
+    animation: hologram-scan calc(3s / var(--animation-speed)) infinite;
+  }
+
+  .hologram-effect::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      var(--hologram-accent) 2px,
+      var(--hologram-accent) 4px
+    );
+    opacity: calc(0.1 * var(--fx-intensity));
+    pointer-events: none;
+  }
+
+  .scan-lines {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-lines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--scan-line-color);
+    animation: scan-line calc(4s / var(--animation-speed)) infinite;
+    opacity: var(--fx-intensity);
+  }
+
+  .data-stream {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .data-stream::before {
+    content: "01001001 01101110 01101001 01110100 01101001 01100001 01101100 01101001 01111010 01101001 01101110 01100111";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    font-family: monospace;
+    font-size: 8px;
+    color: var(--neon-green);
+    opacity: calc(0.1 * var(--fx-intensity));
+    white-space: nowrap;
+    animation: data-flow calc(10s / var(--animation-speed)) infinite linear;
+    pointer-events: none;
+  }
+
+  .circuit-pattern {
+    background-image: radial-gradient(circle at 25% 25%, var(--neon-cyan) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, var(--neon-purple) 1px, transparent 1px),
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: 0 0, 50px 50px, 0 0, 0 0;
+  }
+}
+
+/* Added sci-fi animations */
+@keyframes hologram-scan {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes neon-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 8px currentColor;
+    opacity: 0.8;
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Added responsive sci-fi effects */
+@media (max-width: 768px) {
+  .fx-max {
+    --fx-intensity: 1;
+    --glow-intensity: 1;
+    --animation-speed: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hologram-effect::before,
+  .scan-lines::before,
+  .data-stream::before {
+    animation: none;
+  }
+}
