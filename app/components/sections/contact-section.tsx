@@ -1,102 +1,128 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
-import { Mail, MessageSquare, Send, Github, Linkedin, Twitter, CheckCircle, AlertCircle, Loader2, Facebook } from "lucide-react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  Mail,
+  MessageSquare,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 
 export function ContactSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
-  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  });
+  const [formStatus, setFormStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {}
+    const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
+      newErrors.name = "Name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address"
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required"
+      newErrors.subject = "Subject is required";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required"
+      newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters long"
+      newErrors.message = "Message must be at least 10 characters long";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!validateForm()) {
-      return
+      return;
     }
 
-    setFormStatus("loading")
+    setFormStatus("loading");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // In a real application, you would send the form data to your backend
-      console.log("Form submitted:", formData)
+      const data = await response.json();
 
-      setFormStatus("success")
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setFormStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
 
       // Reset success status after 5 seconds
       setTimeout(() => {
-        setFormStatus("idle")
-      }, 5000)
+        setFormStatus("idle");
+      }, 5000);
     } catch (error) {
-      console.error("Form submission error:", error)
-      setFormStatus("error")
+      console.error("Form submission error:", error);
+      setFormStatus("error");
 
       // Reset error status after 5 seconds
       setTimeout(() => {
-        setFormStatus("idle")
-      }, 5000)
+        setFormStatus("idle");
+      }, 5000);
     }
-  }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
+    });
 
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({
         ...errors,
         [name]: "",
-      })
+      });
     }
-  }
+  };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center py-20 relative overflow-hidden">
+    <section
+      id="contact"
+      className="min-h-screen flex items-center py-20 relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 z-10" ref={ref}>
         <motion.div
           className="text-center mb-16"
@@ -108,7 +134,8 @@ export function ContactSection() {
             Get In Touch
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Ready to build something amazing together? Let's start a conversation.
+            Ready to build something amazing together? Let's start a
+            conversation.
           </p>
         </motion.div>
 
@@ -121,7 +148,9 @@ export function ContactSection() {
             transition={{ duration: 0.8 }}
           >
             <div className="glass-effect rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">Let's Connect</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Let's Connect
+              </h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
@@ -149,9 +178,21 @@ export function ContactSection() {
                 <p className="text-gray-400 text-sm mb-4">Follow me on</p>
                 <div className="flex gap-4">
                   {[
-                    { icon: Github, href: "https://github.com/sameerlama5", label: "GitHub" },
-                    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+                    {
+                      icon: Github,
+                      href: "https://github.com/sameerlama5",
+                      label: "GitHub",
+                    },
+                    {
+                      icon: Linkedin,
+                      href: "https://www.linkedin.com/in/sameer-tamang-395b29238/",
+                      label: "LinkedIn",
+                    },
+                    {
+                      icon: Twitter,
+                      href: "https://twitter.com",
+                      label: "Twitter",
+                    },
                   ].map(({ icon: Icon, href, label }) => (
                     <a
                       key={label}
@@ -175,8 +216,13 @@ export function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="glass-effect rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+            <form
+              onSubmit={handleSubmit}
+              className="glass-effect rounded-2xl p-8 border border-white/10"
+            >
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Send a Message
+              </h3>
 
               {/* Status Messages */}
               {formStatus === "success" && (
@@ -186,7 +232,9 @@ export function ContactSection() {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <CheckCircle className="text-green-400" size={20} />
-                  <p className="text-green-400">Message sent successfully! I'll get back to you soon.</p>
+                  <p className="text-green-400">
+                    Message sent successfully! I'll get back to you soon.
+                  </p>
                 </motion.div>
               )}
 
@@ -197,13 +245,18 @@ export function ContactSection() {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <AlertCircle className="text-red-400" size={20} />
-                  <p className="text-red-400">Failed to send message. Please try again later.</p>
+                  <p className="text-red-400">
+                    Failed to send message. Please try again later.
+                  </p>
                 </motion.div>
               )}
 
               <div className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Name *
                   </label>
                   <input
@@ -213,16 +266,23 @@ export function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors ${
-                      errors.name ? "border-red-500 focus:border-red-500" : "border-white/10 focus:border-primary"
+                      errors.name
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-white/10 focus:border-primary"
                     }`}
                     placeholder="Your name"
                     disabled={formStatus === "loading"}
                   />
-                  {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+                  {errors.name && (
+                    <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Email *
                   </label>
                   <input
@@ -232,16 +292,23 @@ export function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors ${
-                      errors.email ? "border-red-500 focus:border-red-500" : "border-white/10 focus:border-primary"
+                      errors.email
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-white/10 focus:border-primary"
                     }`}
                     placeholder="your.email@example.com"
                     disabled={formStatus === "loading"}
                   />
-                  {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Subject *
                   </label>
                   <input
@@ -251,16 +318,25 @@ export function ContactSection() {
                     value={formData.subject}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors ${
-                      errors.subject ? "border-red-500 focus:border-red-500" : "border-white/10 focus:border-primary"
+                      errors.subject
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-white/10 focus:border-primary"
                     }`}
                     placeholder="What's this about?"
                     disabled={formStatus === "loading"}
                   />
-                  {errors.subject && <p className="text-red-400 text-sm mt-1">{errors.subject}</p>}
+                  {errors.subject && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.subject}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -270,12 +346,18 @@ export function ContactSection() {
                     onChange={handleChange}
                     rows={5}
                     className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none transition-colors resize-none ${
-                      errors.message ? "border-red-500 focus:border-red-500" : "border-white/10 focus:border-primary"
+                      errors.message
+                        ? "border-red-500 focus:border-red-500"
+                        : "border-white/10 focus:border-primary"
                     }`}
                     placeholder="Tell me about your project..."
                     disabled={formStatus === "loading"}
                   />
-                  {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+                  {errors.message && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <motion.button
@@ -318,5 +400,5 @@ export function ContactSection() {
         }}
       />
     </section>
-  )
+  );
 }
