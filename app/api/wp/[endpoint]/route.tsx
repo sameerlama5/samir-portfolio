@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 
 const WORDPRESS_API =
-  "https://lamaitclub.wuaze.com/wp-json/wp/v2";
+  "https://lamaitclub.wuaze.com/?rest_route=/wp/v2";
 
 export async function GET(
   request: NextRequest,
