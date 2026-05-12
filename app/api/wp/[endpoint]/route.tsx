@@ -1,13 +1,12 @@
 import { NextRequest } from "next/server";
 
 const WORDPRESS_API =
-  "https://lamaitclub.wuaze.com/?rest_route=/wp/v2";
+  "https://dev-lamaitclub.pantheonsite.io/wp-json/wp/v2";
 
 export async function GET(
   request: NextRequest,
   context: { params: { endpoint: string } }
 ) {
-
   try {
 
     const endpoint = context.params.endpoint;
