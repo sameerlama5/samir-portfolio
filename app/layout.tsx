@@ -7,22 +7,75 @@ import { Suspense } from "react";
 import "./globals.css";
 import { Providers } from "./providers";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://lamasamir.com.np";
+
 export const metadata: Metadata = {
-  title: "Lama IT Club — Modern Web Development & Creative Digital Solutions",
+  metadataBase: new URL(siteUrl),
+
+  title: {
+    default:
+      "Lama IT Club — Modern Web Development & Creative Digital Solutions",
+
+    template: "%s | Lama IT Club",
+  },
+
   description:
     "Custom WordPress development, WooCommerce solutions, and modern frontend engineering crafted with performance and creativity in mind.",
-  icons: {
-    icon: "/vercel.jpg",
-  },
-   keywords: [
+
+  keywords: [
     "Lama IT Club",
     "WordPress Developer",
     "Elementor Developer",
     "WooCommerce Developer",
     "Tailwind CSS",
     "MERN Stack Developer",
-    "Web Developer Nepal"
+    "Web Developer Nepal",
   ],
+
+  alternates: {
+    canonical: "/",
+  },
+
+  icons: {
+    icon: "/vercel.jpg",
+  },
+
+  openGraph: {
+    title:
+      "Lama IT Club — Modern Web Development & Creative Digital Solutions",
+
+    description:
+      "Custom WordPress development, WooCommerce solutions, and modern frontend engineering crafted with performance and creativity in mind.",
+
+    url: siteUrl,
+
+    siteName: "Lama IT Club",
+
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Lama IT Club",
+      },
+    ],
+
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title:
+      "Lama IT Club — Modern Web Development & Creative Digital Solutions",
+
+    description:
+      "Custom WordPress development, WooCommerce solutions, and modern frontend engineering crafted with performance and creativity in mind.",
+
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
