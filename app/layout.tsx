@@ -8,7 +8,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Samir Tamang || Web Developer",
+  title: "Lama IT Club || Web Developer",
   description:
     "A cinematic sci-fi portfolio showcasing cutting-edge web development projects and skills",
   icons: {
