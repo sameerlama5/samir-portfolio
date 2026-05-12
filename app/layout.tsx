@@ -34,8 +34,9 @@ export const metadata: Metadata = {
     "Web Developer Nepal",
   ],
 
-  alternates: {
-    canonical: "/",
+  robots: {
+    index: true,
+    follow: true,
   },
 
   icons: {
