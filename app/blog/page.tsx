@@ -6,6 +6,7 @@ import { Search, Loader2, AlertCircle } from "lucide-react"
 import { useGetPostsQuery } from "@/app/redux/api/wordpress"
 import { BlogPostCard } from "@/app/components/blog/blog-post-card"
 
+
 export default function BlogPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState("")

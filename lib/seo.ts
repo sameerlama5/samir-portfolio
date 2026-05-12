@@ -9,7 +9,7 @@ interface SEOProps {
 }
 
 export function generateSEO({ title, description, image, url, type = "website" }: SEOProps): Metadata {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dev-lamaitclub.pantheonsite.io/"
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dev-lamaitclub.pantheonsite.io"
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl
   const imageUrl = image ? `${siteUrl}${image}` : `${siteUrl}/og-image.jpg`
 
