@@ -8,12 +8,21 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Lama IT Club || Web Development",
+  title: "Lama IT Club — Modern Web Development & Creative Digital Solutions",
   description:
-    "A cinematic sci-fi portfolio showcasing cutting-edge web development projects and skills",
+    "Custom WordPress development, WooCommerce solutions, and modern frontend engineering crafted with performance and creativity in mind.",
   icons: {
     icon: "/vercel.jpg",
   },
+   keywords: [
+    "Lama IT Club",
+    "WordPress Developer",
+    "Elementor Developer",
+    "WooCommerce Developer",
+    "Tailwind CSS",
+    "MERN Stack Developer",
+    "Web Developer Nepal"
+  ],
 };
 
 export default function RootLayout({
