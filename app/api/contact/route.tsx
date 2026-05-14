@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
           
           <p>Hi ${name},</p>
           
-          <p>Thank you for reaching out through my portfolio. I've received your message about "${subject}" and will get back to you within 24 hours.</p>
+          <p>Thank you for reaching out through Lama IT Club. I've received your message about "${subject}" and will get back to you within 24 hours.</p>
           
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="margin-top: 0; color: #333;">Your Message:</h3>
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
           <p>I'm excited to discuss your project and explore how we can work together!</p>
           
           <p>Best regards,<br>
-          <strong>Your Name</strong></p>
+          <strong>Lama IT Club</strong></p>
           
           <div style="margin-top: 30px; padding: 15px; background: #e8f5e8; border-radius: 8px; text-align: center;">
             <p style="margin: 0; font-size: 14px; color: #666;">
