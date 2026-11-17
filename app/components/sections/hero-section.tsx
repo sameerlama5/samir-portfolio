@@ -19,7 +19,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Fullstack Developer
+          WordPress Developer
         </motion.h1>
 
         <motion.p
