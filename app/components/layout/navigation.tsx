@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import type { RootState } from "@/app/redux/store"
 import { setNavOpen } from "@/app/redux/slices/uiSlice"
+import Link from "next/link";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -21,6 +22,7 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-sm border-b border-white/10">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <Link href="/">
         <motion.div
           className="text-xl font-bold"
           initial={{ opacity: 0, x: -20 }}
@@ -29,6 +31,7 @@ export function Navigation() {
         >
           Samir.
         </motion.div>
+          </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
