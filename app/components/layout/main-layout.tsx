@@ -36,7 +36,7 @@ export default function MainLayout() {
           <HeroSection />
           <AboutSection />
           <SkillsSection />
-          <ProjectsSection />
+          <ProjectCard />
           <ResumeSection />
           <BlogSection />
           <ContactSection />
