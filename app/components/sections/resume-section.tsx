@@ -18,7 +18,7 @@ const experiences = [
   {
     title: "Backend Developer",
     company: "FnClick",
-    period: "2025 - Present",
+    period: "2025 - 2026",
     location: "Bhaktapur, Liwali",
     description:
       "Leading development of next-generation web applications with AI integration.",
@@ -28,20 +28,6 @@ const experiences = [
       "Gaining hands-on experience with WordPress, ACF, and AJAX",
     ],
     technologies: ["HTML", "CSS", "WORDPRESS", "AJAX", "ACF"],
-  },
-  {
-    title: "Frontend Developer",
-    company: "ProfoxStudio",
-    period: "2023 - 2024",
-    location: "Bhaktapur, Kaushaltar",
-    description:
-      "Built responsive web applications and improved user experience metrics by 40%.",
-    achievements: [
-      "Led the development of interactive web applications using WordPress and JavaScript.",
-      "animations using Bootstrap CSS and GSAP. Collaborated with designers to create seamless user experiences. ",
-      "Mentored junior developers and conducted code reviews.",
-    ],
-    technologies: ["HTML", "WORDPRESS", "BOOSTRAP CSS", "CSS", "JAVASCRIPT"],
   },
 ];
 
