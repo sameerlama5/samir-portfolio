@@ -7,12 +7,12 @@ import { useRef } from "react"
 const skillCategories = [
   {
     title: "Frontend",
-    skills: ["HTML5","CSS3", "Bootstrap", "React", "Next.js", "JavaScript", "Tailwind CSS", "Framer Motion"],
+    skills: ["HTML5","CSS3", "Bootstrap","JavaScript", "Framer Motion"],
     color: "from-primary to-primary/60",
   },
   {
     title: "Backend",
-    skills: ["Node.js", "Express.js", "CMS"],
+    skills: ["WordPress", "Elementor", "CMS"],
     color: "from-accent to-accent/60",
   },
  
