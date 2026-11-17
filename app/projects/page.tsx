@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Search, Filter, Loader2, AlertCircle } from "lucide-react"
 import { ProjectCard } from "@/app/components/projects/project-card"
 import { useGetProjectsQuery } from "../redux/api/wordpress"
-import { Navigation } from "./navigation"
+import { Navigation } from "../components/layout/navigation"
 
 export default function ProjectsPage() {
   const [currentPage, setCurrentPage] = useState(1)
