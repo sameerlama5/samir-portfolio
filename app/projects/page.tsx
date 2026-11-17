@@ -22,6 +22,7 @@ export default function ProjectsPage() {
     per_page: projectsPerPage,
     page: currentPage,
   })
+  console.log("Projects:", projects);
 
   // Get unique categories
   const categories = projects
