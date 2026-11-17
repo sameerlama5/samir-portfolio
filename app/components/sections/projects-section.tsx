@@ -16,6 +16,9 @@ export function ProjectsSection() {
     error,
     isLoading,
   } = useGetProjectsQuery({ per_page: 6 });
+  console.log("Projects:", projects);
+console.log("Loading:", isLoading);
+console.log("Error:", error);
 
   const stripHtml = (html: string) => {
     return html.replace(/<[^>]*>/g, "").substring(0, 200) + "...";
